@@ -1,40 +1,36 @@
+# AWS Infrastructure Deployment with Terraform
 
-# AWS Architecture Terraform Deployment
+This Terraform setup provisions a secure and production-ready architecture on AWS based on the provided architecture diagram.
 
-This package sets up a full infrastructure as per your architecture diagram:
+## Features
 
-- VPC with public/private subnets
-- App & MySQL EC2 instances
-- Network Load Balancer (NLB)
-- SSL VPN Server (OpenVPN installed)
-- S3 Endpoint, IAM Roles
-- CloudWatch, CloudTrail, Lambda, SES, SNS
+- ✅ VPC with public & private subnets
+- ✅ Internet Gateway, NAT Gateway, NACLs
+- ✅ App Server & MySQL DB EC2 Instances
+- ✅ Network Load Balancer (NLB)
+- ✅ SSL VPN Server with OpenVPN (user_data based)
+- ✅ VPC Endpoints (S3)
+- ✅ IAM Roles & Instance Profiles
+- ✅ CloudWatch Logs, CloudTrail
+- ✅ Lambda Function Boilerplate
+- ✅ SNS Topic & SES Domain Identity
+
+---
 
 ## Prerequisites
 
-- Terraform v1.3+
-- AWS CLI configured (`aws configure`)
-- Valid AWS credentials with IAM permissions
+- [Terraform](https://developer.hashicorp.com/terraform/downloads) v1.3+
+- AWS CLI (`aws configure`)
+- An active AWS account with sufficient permissions
 
-## Deployment
+---
+
+## Setup & Deployment
 
 ```bash
+git clone <this-repo-url>
+cd aws_architecture_terraform
+
 terraform init
 terraform plan
 terraform apply
-```
-
-## VPN EC2 Setup
-
-The VPN server installs OpenVPN using EC2 user_data. You can SSH in and finish setup with:
-
-```bash
-sudo yum install -y openvpn easy-rsa
-```
-
-> Configure client `.ovpn` profiles using EasyRSA or a script.
-
-## Notes
-
-- This demo uses public key from `~/.ssh/id_rsa.pub`. Update if needed.
-- Ensure your domain is verified in SES for email to work.
